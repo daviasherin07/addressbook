@@ -18,33 +18,38 @@ Dibuat menggunakan HTML, Tailwind CSS dan JavaScript
 
 ```mermaid
 flowchart TD
-    A["Mulai"] --> B["Aplikasi Dibuka"]
 
-    B --> C["Tampilkan Daftar Kontak"]
-    C --> D["Pengguna Bisa Mencari Kontak"]
+A[Halaman dibuka] --> B[Ambil data kontak dari LocalStorage]
+B --> C[Tampilkan kontak ke layar]
 
-    D --> E{"Aksi Pengguna?"}
+C --> D[User isi form tambah kontak]
+D --> E[Klik tombol Simpan]
 
-    %% Tambah Kontak
-    E --> F["Tambah Kontak Baru"]
-    F --> G["Isi Form Kontak"]
-    G --> H{"Simpan Kontak?"}
-    H -->|Ya| C
-    H -->|Batal| C
+E --> F{Lagi edit data?}
 
-    %% Edit Kontak
-    E --> I["Edit Kontak"]
-    I --> J["Form Terisi Data Lama"]
-    J --> K{"Simpan Perubahan?"}
-    K -->|Ya| C
-    K -->|Batal| C
+F -- Ya --> G[Update kontak yang dipilih]
+F -- Tidak --> H[Tambah kontak baru]
 
-    %% Hapus Kontak
-    E --> L["Hapus Kontak"]
-    L --> M{"Konfirmasi Hapus?"}
-    M -->|Ya| C
-    M -->|Tidak| C
+G --> I[Simpan ke LocalStorage]
+H --> I[Simpan ke LocalStorage]
 
-    %% Selesai
-    E --> N["Selesai"]
+I --> J[Form dikosongkan]
+J --> C
+
+C --> K[User mengetik di kolom cari]
+K --> C
+
+C --> L[User pilih kategori filter]
+L --> C
+
+C --> M[User klik Edit]
+M --> N[Isi form dengan data kontak]
+N --> D
+
+C --> O[User klik Hapus]
+O --> P{Yakin mau hapus?}
+P -- Ya --> Q[Hapus kontak dari data<br>dan simpan ulang]
+P -- Tidak --> C
+Q --> C
+
 ```
