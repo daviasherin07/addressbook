@@ -1,119 +1,128 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const form = document.getElementById("contactForm");
-    const nameInput = document.getElementById("name");
-    const phoneInput = document.getElementById("phone");
-    const emailInput = document.getElementById("email");
-    const addressInput = document.getElementById("address");
-    const categoryInput = document.getElementById("category");
-    const searchInput = document.getElementById("searchInput");
-    const contactList = document.getElementById("contactList");
+  const form = document.getElementById("contactForm");
+  const list = document.getElementById("contactList");
+  const search = document.getElementById("searchInput");
+  const filters = document.querySelectorAll(".filter-btn");
 
-    let contacts = JSON.parse(localStorage.getItem("contacts")) || [];
-    let editIndex = null;
-    let activeFilter = "Semua";
+  let contacts = JSON.parse(localStorage.getItem("contacts")) || [];
+  let editingIndex = null;
+  let activeFilter = "Semua";
 
-    function saveToLocal() {
-        localStorage.setItem("contacts", JSON.stringify(contacts));
+  function saveLocal() {
+    localStorage.setItem("contacts", JSON.stringify(contacts));
+  }
+
+
+  function badgeColor(cat) {
+    switch (cat) {
+      case "Personal": return "bg-blue-100 text-blue-700";
+      case "Kerja": return "bg-green-100 text-green-700";
+      case "Keluarga": return "bg-purple-100 text-purple-700";
+      case "Spam": return "bg-red-100 text-red-700";
+      default: return "bg-gray-100";
+    }
+  }
+
+  // TIDAK ADA DATA
+  function render() {
+    list.innerHTML = "";
+
+    const filtered = contacts.filter(c =>
+      (activeFilter === "Semua" || c.category === activeFilter) &&
+      c.name.toLowerCase().includes(search.value.toLowerCase())
+    );
+
+    if (filtered.length === 0) {
+      list.innerHTML = `<p class="text-gray-500 italic">Tidak ada kontak ditemukan</p>`;
+      return;
     }
 
-    function clearForm() {
-        form.reset();
-        editIndex = null;
-    }
+    filtered.forEach((c, i) => {
+      const card = document.createElement("div");
+      card.className =
+        card.className =
+        "bg-white rounded-xl p-5 border shadow transition transform hover:-translate-y-1 hover:shadow-lg";
 
-    function renderContacts() {
-        contactList.innerHTML = "";
 
-        let filteredContacts = contacts.filter(c => {
-            let matchFilter = activeFilter === "Semua" || c.category === activeFilter;
-            let matchSearch =
-                c.name.toLowerCase().includes(searchInput.value.toLowerCase());
-            return matchFilter && matchSearch;
-        });
+      card.innerHTML = `
+        <div class="flex justify-between">
+          <div>
+            <p class="font-bold text-lg">${c.name}</p>
+            <p class="text-sm">📞 ${c.phone}</p>
+            <p class="text-sm">📧 ${c.email}</p>
+            <p class="text-sm">📍 ${c.address}</p>
+            <span class="text-xs px-3 py-1 rounded-full ${badgeColor(c.category)}">${c.category}</span>
+          </div>
 
-        if (filteredContacts.length === 0) {
-            contactList.innerHTML = `<p class="text-gray-500 italic">Tidak ada kontak ditemukan</p>`;
-            return;
-        }
 
-        filteredContacts.forEach((contact, index) => {
-            let card = document.createElement("div");
-            card.className =
-                "bg-white shadow-md p-4 rounded-xl mb-4 border border-gray-200 " +
-                "hover:scale-[1.02] transition-all duration-200 cursor-pointer"; // <<— ANIMASI KEDUT
+          <div class="text-right text-sm">
+            <button class="text-blue-600 editBtn">✎ Edit</button><br>
+            <button class="text-red-600 deleteBtn mt-1">❌ Hapus</button>
+          </div>
+        </div>
+      `;
+      
 
-            card.innerHTML = `
-                <div class="flex justify-between items-start">
-                    <div>
-                        <p class="font-semibold text-lg flex items-center gap-2">
-                            <span>👤</span> ${contact.name}
-                        </p>
-                        <p class="text-sm mt-1">📞 ${contact.phone}</p>
-                        <p class="text-sm">📧 ${contact.email}</p>
-                        <p class="text-sm">📍 ${contact.address}</p>
-                        <span class="inline-block mt-2 px-3 py-1 text-sm rounded-full bg-blue-100">
-                            ${contact.category}
-                        </span>
-                    </div>
+      // EDIT DATA
+      card.querySelector(".editBtn").onclick = () => {
+        document.getElementById("name").value = c.name;
+        document.getElementById("phone").value = c.phone;
+        document.getElementById("email").value = c.email;
+        document.getElementById("address").value = c.address;
+        document.getElementById("category").value = c.category;
+        editingIndex = i;
+      };
 
-                    <div class="text-right">
-                        <button class="text-blue-600 font-medium editBtn">✏️ Edit</button><br>
-                        <button class="text-red-600 font-medium deleteBtn mt-1">❌ Hapus</button>
-                    </div>
-                </div>
-            `;
+      // HAPUS DATA
+      card.querySelector(".deleteBtn").onclick = () => {
+         if (!confirm("Yakin mau dihapus?")) return;
+  contacts.splice(i, 1);
+        saveLocal();
+        render();
+      };
 
-            // Edit
-            card.querySelector(".editBtn").onclick = () => {
-                nameInput.value = contact.name;
-                phoneInput.value = contact.phone;
-                emailInput.value = contact.email;
-                addressInput.value = contact.address;
-                categoryInput.value = contact.category;
-                editIndex = index;
-            };
-
-            // Delete
-            card.querySelector(".deleteBtn").onclick = () => {
-                contacts.splice(index, 1);
-                saveToLocal();
-                renderContacts();
-            };
-
-            contactList.appendChild(card);
-        });
-    }
-
-    form.addEventListener("submit", (e) => {
-        e.preventDefault();
-
-        let newContact = {
-            name: nameInput.value,
-            phone: phoneInput.value,
-            email: emailInput.value,
-            address: addressInput.value,
-            category: categoryInput.value
-        };
-
-        if (editIndex !== null) {
-            contacts[editIndex] = newContact;
-        } else {
-            contacts.push(newContact);
-        }
-
-        saveToLocal();
-        renderContacts();
-        clearForm();
+      list.appendChild(card);
     });
+  }
 
-    searchInput.addEventListener("input", renderContacts);
+  // BUTTON SIMPAN
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
 
-    document.querySelectorAll("[data-filter]").forEach(btn => {
-        btn.addEventListener("click", () => {
-            activeFilter = btn.dataset.filter;
-            renderContacts();
-        });
+    const data = {
+      name: document.getElementById("name").value,
+      phone: document.getElementById("phone").value,
+      email: document.getElementById("email").value,
+      address: document.getElementById("address").value,
+      category: document.getElementById("category").value
+    };
+
+    if (editingIndex !== null) {
+      contacts[editingIndex] = data;
+      editingIndex = null;
+    } else {
+      contacts.push(data);
+    }
+
+    saveLocal();
+    render();
+    form.reset();
+  });
+
+  // CARI
+  search.addEventListener("input", render);
+
+  // BUTTON KATEGORI
+  filters.forEach(btn => {
+    btn.addEventListener("click", () => {
+      activeFilter = btn.dataset.filter;
+
+      filters.forEach(b => b.classList.remove("filter-active"));
+      btn.classList.add("filter-active");
+
+      render();
     });
+  });
 
-    renderContacts();
+  render();
 });

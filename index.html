@@ -7,7 +7,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
-      /* Hover Zoom Soft */
       .btn-anim {
         transition: transform 0.18s ease, box-shadow 0.18s ease;
       }
@@ -16,7 +15,6 @@
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
       }
 
-      /* Smooth hover untuk kategori */
       .cat-btn {
         transition: all 0.18s ease;
       }
@@ -29,16 +27,15 @@
   </head>
 
   <body class="min-h-screen bg-[#EFE8D2] p-8 flex items-center justify-center">
-    <div
-      class="bg-[#FBF7EB] border border-[#D9C9A8] rounded-2xl shadow-xl max-w-6xl w-full p-10"
-    >
-      <h1
-        class="text-3xl font-extrabold text-[#6B5223] text-center mb-8 flex justify-center items-center gap-2"
-      >
-        Address Book
-      </h1>
+    <div class="bg-[#FBF7EB] border border-[#D9C9A8] rounded-2xl shadow-xl max-w-6xl w-full p-10">
 
-      <!-- SEARCH -->
+      <h1 class="text-3xl font-extrabold text-center mb-8 
+bg-gradient-to-r from-[#E9D9B7] to-[#6B5223] bg-clip-text text-transparent">
+  ✨ ADDRES BOOK ✨
+</h1>
+
+
+      <!-- CARI -->
       <div class="flex justify-center mb-8">
         <input
           id="searchInput"
@@ -48,114 +45,56 @@
       </div>
 
       <div class="grid md:grid-cols-2 gap-10">
-        <!-- FORM -->
-        <div
-          class="bg-[#FFF7E2] border border-[#D9C9A8] rounded-xl p-6 shadow-md"
-        >
-          <h2 class="text-lg font-semibold text-[#6B5223] mb-4">
-            📝 Tambah Kontak
-          </h2>
+
+        <!-- ISI FORM DATA -->
+        <div class="bg-[#FFF7E2] border border-[#D9C9A8] rounded-xl p-6 shadow-md">
+          <h2 class="text-lg font-bold text-[#6B5223] mb-4"> TAMBAH KONTAK</h2>
 
           <form id="contactForm" class="space-y-4">
             <div class="relative">
-              <span class="absolute left-3 top-3 text-xl text-[#8A6A26]"
-                >👤</span
-              >
-              <input
-                id="name"
-                placeholder="Nama Lengkap"
-                class="w-full border border-[#CBB892] rounded-md px-12 py-3 bg-[#FBF7EB]"
-              />
+              <span class="absolute left-3 top-3 text-xl text-[#8A6A26]">👤</span>
+              <input id="name" placeholder="Nama Lengkap" class="w-full border border-[#CBB892] rounded-md px-12 py-3 bg-[#FBF7EB]" />
             </div>
 
             <div class="relative">
-              <span class="absolute left-3 top-3 text-xl text-[#8A6A26]"
-                >📞</span
-              >
-              <input
-                id="phone"
-                placeholder="Nomor Telepon"
-                class="w-full border border-[#CBB892] rounded-md px-12 py-3 bg-[#FBF7EB]"
-              />
+              <span class="absolute left-3 top-3 text-xl text-[#8A6A26]">📞</span>
+              <input id="phone" placeholder="Nomor Telepon" class="w-full border border-[#CBB892] rounded-md px-12 py-3 bg-[#FBF7EB]" />
             </div>
 
             <div class="relative">
-              <span class="absolute left-3 top-3 text-xl text-[#8A6A26]"
-                >📧</span
-              >
-              <input
-                id="email"
-                placeholder="Email"
-                class="w-full border border-[#CBB892] rounded-md px-12 py-3 bg-[#FBF7EB]"
-              />
+              <span class="absolute left-3 top-3 text-xl text-[#8A6A26]">📧</span>
+              <input id="email" placeholder="Email" class="w-full border border-[#CBB892] rounded-md px-12 py-3 bg-[#FBF7EB]" />
             </div>
 
             <div class="relative">
-              <span class="absolute left-3 top-3 text-xl text-[#8A6A26]"
-                >🏠</span
-              >
-              <textarea
-                id="address"
-                placeholder="Alamat"
-                rows="2"
-                class="w-full border border-[#CBB892] rounded-md px-12 py-3 bg-[#FBF7EB]"
-              ></textarea>
+              <span class="absolute left-3 top-3 text-xl text-[#8A6A26]">🏠</span>
+              <textarea id="address" placeholder="Alamat" rows="2" class="w-full border border-[#CBB892] rounded-md px-12 py-3 bg-[#FBF7EB]"></textarea>
             </div>
 
-            <select
-              id="category"
-              class="w-full py-3 border border-[#CBB892] rounded-md bg-[#FBF7EB]"
-            >
+            <select id="category" class="w-full py-3 border border-[#CBB892] rounded-md bg-[#FBF7EB]">
               <option>Personal</option>
               <option>Kerja</option>
               <option>Keluarga</option>
               <option>Spam</option>
             </select>
 
-            <button
-              type="submit"
-              class="btn-anim w-full bg-[#BA9A50] text-white py-3 rounded-md font-semibold hover:bg-[#A18242]"
-            >
+            <button type="submit" class="btn-anim w-full bg-[#BA9A50] text-white py-3 rounded-md font-semibold hover:bg-[#A18242]">
               💾 Simpan
             </button>
           </form>
         </div>
 
-        <!-- LIST -->
-        <div
-          class="bg-[#FFF7E2] border border-[#D9C9A8] rounded-xl p-6 shadow-md"
-        >
-          <h2 class="text-lg font-semibold text-[#6B5223] mb-4">
-            Daftar Kontak
-          </h2>
+        <!-- DAFTAR KONTAK -->
+        <div class="bg-[#FFF7E2] border border-[#D9C9A8] rounded-xl p-6 shadow-md">
+          <h2 class="text-lg font-bold text-[#6B5223] mb-4">DAFTAR KONTAK</h2>
 
-          <!-- CATEGORY BUTTONS -->
+          <!-- BUTTON KATEGORI -->
           <div class="flex flex-wrap gap-2 mb-5">
-            <button
-              class="filter-btn cat-btn bg-[#BA9A50] text-white px-4 py-1.5 rounded-full"
-            >
-              Semua
-            </button>
-            <button
-              class="filter-btn cat-btn border border-[#CBB892] px-4 py-1.5 rounded-full"
-            >
-              Personal
-            </button>
-            <button
-              class="filter-btn cat-btn border border-[#CBB892] px-4 py-1.5 rounded-full"
-            >
-              Kerja
-            </button>
-            <button
-              class="filter-btn cat-btn border border-[#CBB892] px-4 py-1.5 rounded-full"
-            >
-              Keluarga
-            </button>
-            <button
-              class="filter-btn cat-btn border border-[#CBB892] px-4 py-1.5 rounded-full"
-            >
-              Spam
-            </button>
+            <button class="filter-btn cat-btn bg-[#BA9A50] text-white px-4 py-1.5 rounded-full" data-filter="Semua">Semua</button>
+            <button class="filter-btn cat-btn border border-[#CBB892] px-4 py-1.5 rounded-full" data-filter="Personal">Personal</button>
+            <button class="filter-btn cat-btn border border-[#CBB892] px-4 py-1.5 rounded-full" data-filter="Kerja">Kerja</button>
+            <button class="filter-btn cat-btn border border-[#CBB892] px-4 py-1.5 rounded-full" data-filter="Keluarga">Keluarga</button>
+            <button class="filter-btn cat-btn border border-[#CBB892] px-4 py-1.5 rounded-full" data-filter="Spam">Spam</button>
           </div>
 
           <ul id="contactList" class="space-y-3"></ul>
@@ -163,145 +102,7 @@
       </div>
     </div>
 
-    <!-- ======================= JS ======================= -->
-    <script>
-      const contactForm = document.getElementById("contactForm");
-      const contactList = document.getElementById("contactList");
-      const searchInput = document.getElementById("searchInput");
-      const filterButtons = document.querySelectorAll(".filter-btn");
-
-      let contacts = JSON.parse(localStorage.getItem("contacts")) || [];
-      let activeCategory = "Semua";
-      let editingIndex = null;
-
-      function renderContacts() {
-        contactList.innerHTML = "";
-        const searchQuery = searchInput.value.toLowerCase();
-
-        const filtered = contacts.filter((c) => {
-          const matchesCat =
-            activeCategory === "Semua" || c.category === activeCategory;
-          const matchesSearch =
-            c.name.toLowerCase().includes(searchQuery) ||
-            c.phone.toLowerCase().includes(searchQuery) ||
-            c.email.toLowerCase().includes(searchQuery) ||
-            c.address.toLowerCase().includes(searchQuery);
-          return matchesCat && matchesSearch;
-        });
-
-        if (filtered.length === 0) {
-          contactList.innerHTML = `
-      <li class="text-gray-500 text-center italic py-4">
-        Tidak ada kontak ditemukan
-      </li>`;
-          return;
-        }
-
-        filtered.forEach((c, i) => {
-          let badgeColor =
-            c.category === "Personal"
-              ? "bg-blue-100 text-blue-700"
-              : c.category === "Kerja"
-              ? "bg-green-100 text-green-700"
-              : c.category === "Keluarga"
-              ? "bg-purple-100 text-purple-700"
-              : c.category === "Spam"
-              ? "bg-red-100 text-red-700"
-              : "bg-gray-100 text-gray-700";
-
-          const li = document.createElement("li");
-          li.className =
-            "border border-[#D9C9A8] rounded-xl p-5 shadow bg-[#FFFFFF] hover:shadow-md transition-all duration-200";
-
-          li.innerHTML = `
-      <div class="flex justify-between items-start">
-        <div class="flex flex-col space-y-1">
-          <p class="text-lg font-semibold text-gray-900 flex items-center gap-2">👤 ${
-            c.name
-          }</p>
-          <p class="text-sm text-gray-700 flex items-center gap-2">📞 ${
-            c.phone
-          }</p>
-          <p class="text-sm text-gray-700 flex items-center gap-2">📧 ${
-            c.email
-          }</p>
-          <p class="text-sm text-gray-700 flex items-center gap-2">📍 ${
-            c.address || "-"
-          }</p>
-          <span class="mt-2 inline-block text-xs px-2 py-1 rounded-full ${badgeColor} font-medium">${
-            c.category
-          }</span>
-        </div>
-
-        <div class="flex flex-col gap-2 items-end text-sm font-semibold">
-          <button onclick="editContact(${i})" class="text-blue-600 hover:text-blue-800">✎ Edit</button>
-          <button onclick="deleteContact(${i})" class="text-red-600 hover:text-red-800">❌ Hapus</button>
-        </div>
-      </div>`;
-
-          contactList.appendChild(li);
-        });
-      }
-
-      contactForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-
-        const name = document.getElementById("name").value.trim();
-        const phone = document.getElementById("phone").value.trim();
-        const email = document.getElementById("email").value.trim();
-        const address = document.getElementById("address").value.trim();
-        const category = document.getElementById("category").value;
-
-        if (!name || !phone || !email) return;
-
-        const contact = { name, phone, email, address, category };
-
-        if (editingIndex !== null) {
-          contacts[editingIndex] = contact;
-          editingIndex = null;
-        } else {
-          contacts.push(contact);
-        }
-
-        localStorage.setItem("contacts", JSON.stringify(contacts));
-        renderContacts();
-        contactForm.reset();
-      });
-
-      function editContact(index) {
-        const c = contacts[index];
-        document.getElementById("name").value = c.name;
-        document.getElementById("phone").value = c.phone;
-        document.getElementById("email").value = c.email;
-        document.getElementById("address").value = c.address;
-        document.getElementById("category").value = c.category;
-        editingIndex = index;
-      }
-
-      function deleteContact(index) {
-        if (confirm("Yakin mau hapus kontak ini?")) {
-          contacts.splice(index, 1);
-          localStorage.setItem("contacts", JSON.stringify(contacts));
-          renderContacts();
-        }
-      }
-
-      filterButtons.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          activeCategory = btn.dataset.category;
-
-          filterButtons.forEach((b) =>
-            b.classList.remove("bg-[#BA9A50]", "text-white")
-          );
-
-          btn.classList.add("bg-[#BA9A50]", "text-white");
-
-          renderContacts();
-        });
-      });
-
-      searchInput.addEventListener("input", renderContacts);
-      renderContacts();
-    </script>
+    <!-- JS FILE -->
+    <script src="script.js"></script>
   </body>
 </html>
