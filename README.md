@@ -14,7 +14,9 @@ Dibuat menggunakan HTML, Tailwind CSS dan JavaScript
 - Tailwind CSS
 - JavaScript
 
-## ⬇️Flowchart
+## ⬇️ Flowchart
+
+```mermaid
 flowchart TD
     A["Mulai"] --> B["Aplikasi Dibuka"]
 
@@ -45,3 +47,4 @@ flowchart TD
 
     %% Selesai
     E --> N["Selesai"]
+```
