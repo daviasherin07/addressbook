@@ -1,24 +1,47 @@
-# Address Book
+# ✨Address Book
+Web simpel untuk menyimpan dan mengelola daftar kontak.
+Dibuat menggunakan HTML, Tailwind CSS dan JavaScript
 
-A simple address book application to store and manage contact information.
+## ⚠️Fitur
 
-## Link
+- Tambah kontak : Nama Lengkap, No. Telepon, Email, Alamat dan Kategori lalu simpan
+- Daftar Kontak : Kategori/Keterangan Data, List/Card data, Mengedit dan Menghapus data.
+- Tampilan dari Tailwind CSS
 
-- URL Deployment:
-- Repository :
-
-## Features
-
-- Add, edit, and delete contacts
-- Search contacts by name or email
-
-## Tech Stack
+## 🚀Teknologi yg digunakan
 
 - HTML
-- CSS
+- Tailwind CSS
 - JavaScript
 
-## Flowchart
-![preview](./assets/diagram.png)
+## ⬇️Flowchart
+flowchart TD
+    A["Mulai"] --> B["Aplikasi Dibuka"]
 
+    B --> C["Tampilkan Daftar Kontak"]
+    C --> D["Pengguna Bisa Mencari Kontak"]
 
+    D --> E{"Aksi Pengguna?"}
+
+    %% Tambah Kontak
+    E --> F["Tambah Kontak Baru"]
+    F --> G["Isi Form Kontak"]
+    G --> H{"Simpan Kontak?"}
+    H -->|Ya| C
+    H -->|Batal| C
+
+    %% Edit Kontak
+    E --> I["Edit Kontak"]
+    I --> J["Form Terisi Data Lama"]
+    J --> K{"Simpan Perubahan?"}
+    K -->|Ya| C
+    K -->|Batal| C
+
+    %% Hapus Kontak
+    E --> L["Hapus Kontak"]
+    L --> M{"Konfirmasi Hapus?"}
+    M -->|Ya| C
+    M -->|Tidak| C
+
+    %% Selesai
+    E --> N["Selesai"]
